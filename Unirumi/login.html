@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" type="text/css" href="css/login.css">
+  <script>
+    function validateEmail() {
+      var emailInput = document.getElementById("email");
+      var email = emailInput.value.trim();
+      var emailPattern = /^[a-zA-Z0-9._%+-]+@umbc\.edu$/;
+
+      var errorElement = document.getElementById("email-error");
+
+      if (email === "") {
+        errorElement.textContent = "Please enter an email.";
+        return false;
+      }
+
+      if (!emailPattern.test(email)) {
+        errorElement.textContent = "Please enter a valid @umbc.edu email.";
+        return false;
+      }
+
+      errorElement.textContent = "";
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb6TSLx%2FbtsfdbmRIUy%2FZ5TGgruxtnpVUywPaCh910%2Fimg.png" alt="UniRumi Logo">
+    </div>
+    <h1>UniRumi Login</h1>
+      <input type="text" id="email" placeholder="Email" required>
+      <span id="email-error" class="error"></span>
+      <input type="password" placeholder="Password" required>
+      <input type="submit" value="Log In">
+    <div class="footer">
+      <a href="signup.html">Forgot password?</a>
+    </div>
+  </div>
+</body>
+</html>

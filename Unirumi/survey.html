@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Roommate Questionnaire</title>
+</head>
+<style>
+
+.submit-button {
+    background-color: #4CAF50; /* Green background color */
+    border: none; /* Remove border */
+    color: white; /* Text color */
+    padding: 10px 20px; /* Add padding */
+    text-align: center; /* Center align text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Display as inline block */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Add cursor hover effect */
+    border-radius: 4px; /* Add border radius */
+  }
+
+  .submit-button:hover {
+    background-color: #45a049; /* Darker green background color on hover */
+  }
+
+ul.tabs {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  ul.tabs li {
+    flex-grow: 1;
+  }
+  
+  ul.tabs li a {
+    display: block;
+    padding: 15px 20px;
+    color: #333333;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  ul.tabs li a:hover {
+    background-color: #eaeaea;
+  }
+  
+  .tab-content {
+    margin-top: 50px;
+  }
+
+  .login-link {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding-right: 20px;
+  }
+
+  .login-link img {
+    width: 20px;
+    margin-right: 5px;
+  }
+  
+  button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+  body {
+    font-family: Helvetica, sans-serif;
+  }
+
+  .question {
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.question p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.answer-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.answer-label input[type="radio"] {
+  display: none;
+}
+
+.answer-label span {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #e8e8e8;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.answer-label input[type="radio"]:checked + span {
+  background-color: #a0d8ff;
+}
+
+.footer {
+    background-color: #f5f5f5;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #555555;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  
+
+.footer-address {
+  margin-bottom: 10px;
+}
+
+.footer-phone,
+.footer-email {
+  margin-bottom: 10px;
+}
+
+.footer-copyright {
+  margin-top: 10px;
+}
+</style>
+
+
+<header>
+  <ul class="tabs">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="survey.html">Survey</a></li>
+    <li><a href="rumies.html">Potential Rumies</a></li>
+    <li><a href="chat.html">Chat</a></li>
+    <li><a href="search.html">Search</a></li>
+    <li><a href="personalinfo.html">Personal Info</a></li>
+    <li><a href="notification.html">Notification</a></li>
+    <li class="login-link"><a href="login.html"><img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/login-person-man-user-51105.png?f=avif&w=256" alt="Login"></a></li>
+  </ul>
+</header>
+
+<body>
+  <h1>Roommate Questionnaire</h1>
+
+  <div class="question">
+    <p>Question 1: Do you have any pets? If yes, how many do you have?</p>
+    <label class="answer-label">
+      <input type="radio" name="pets" value="1" onclick="recordAnswer('pets', this.value)">
+      <span>1</span>
+    </label>
+    <label class="answer-label">
+      <input type="radio" name="pets" value="2" onclick="recordAnswer('pets', this.value)">
+      <span>2</span>
+    </label>
+    <label class="answer-label">
+      <input type="radio" name="pets" value="3+" onclick="recordAnswer('pets', this.value)">
+      <span>3+</span>
+    </label>
+    <label class="answer-label">
+      <input type="radio" name="pets" value="None" onclick="recordAnswer('pets', this.value)">
+      <span>None</span>
+    </label>
+  </div>
+
+  <div class="question">
+    <p>Question 2: UMBC is a smoke-free campus, are you a smoker or non-smoker?</p>
+    <label class="answer-label">
+      <input type="radio" name="smoker" value="Non-Smoker, Prefer non-smoking roommate" onclick="recordAnswer('smoker', this.value)">
+      <span>Non-Smoker, Prefer non-smoking roommate</span>
+    </label>
+    <label class="answer-label">
+      <input type="radio" name="smoker" value="Non-Smoker, OK with smoking roommate" onclick="recordAnswer('smoker', this.value)">
+      <span>Non-Smoker, OK with smoking roommate</span>
+    </label>
+    <label class="answer-label">
+      <input type="radio" name="smoker" value="Smoker, Prefer smoking roommate" onclick="recordAnswer('smoker', this.value)">
+      <span>Smoker, Prefer smoking roommate</span>
+    </label>
+  </div>
+
+  <div class="question">
+    <p>Question 3: How often do you clean your room?</p>
+    <label class="answer-label">
+      <input type="radio" name="cleaning" value="Once a month" onclick="recordAnswer('cleaningFrequency', this.value)">
+      <span>Once a month</span>
+    </label>
+    <label class="answer-label">
+      <input type="radio" name="cleaning" value="Once every two weeks" onclick="recordAnswer('cleaningFrequency', this.value)">
+      <span>Once every two weeks</span>
+    </label>
+    <label class="answer-label">
+      <input type="radio" name="cleaning" value="Once a week" onclick="recordAnswer('cleaningFrequency', this.value)">
+      <span>Once a week</span>
+    </label>
+    <label class="answer-label">
+      <input type="radio" name="cleaning" value="More than twice a week" onclick="recordAnswer('cleaningFrequency', this.value)">
+      <span>More than twice a week</span>
+    </label>
+  </div>
+  
+  <div class="question">
+    <p>Question 4: Do you have any allergies?</p>
+    <label class="answer-label">
+      <input type="radio" name="allergies" value="Yes" onclick="recordAnswer('allergies', this.value)">
+      <span>Yes</span>
+    </label>
+    <label class="answer-label">
+      <input type="radio" name="allergies" value="No" onclick="recordAnswer('allergies', this.value)">
+      <span>No</span>
+      </label>
+      
+      </div>
+      <div class="question">
+        <p>Question 5: What is your ideal room temperature?</p>
+        <label class="answer-label">
+          <input type="radio" name="temperature" value="Below 66 degrees" onclick="recordAnswer('roomTemperature', this.value)">
+          <span>Below 66 degrees</span>
+        </label>
+        <label class="answer-label">
+          <input type="radio" name="temperature" value="Between 67-73 degrees" onclick="recordAnswer('roomTemperature', this.value)">
+          <span>Between 67-73 degrees</span>
+        </label>
+        <label class="answer-label">
+          <input type="radio" name="temperature" value="Above 74 degrees" onclick="recordAnswer('roomTemperature', this.value)">
+          <span>Above 74 degrees</span>
+        </label>
+      </div>
+      <div class="question">
+        <p>Question 6: What is your ideal social environment?</p>
+        <label class="answer-label">
+          <input type="radio" name="socialEnvironment" value="Prefer my room to be a private space" onclick="recordAnswer('socialEnvironment', this.value)">
+          <span>Prefer my room to be a private space</span>
+        </label>
+        <label class="answer-label">
+          <input type="radio" name="socialEnvironment" value="Prefer few close friends at a time" onclick="recordAnswer('socialEnvironment', this.value)">
+          <span>Prefer few close friends at a time</span>
+        </label>
+        <label class="answer-label">
+          <input type="radio" name="socialEnvironment" value="Prefer occasional social gathering place" onclick="recordAnswer('socialEnvironment', this.value)">
+          <span>Prefer occasional social gathering place</span>
+        </label>
+        <label class="answer-label">
+          <input type="radio" name="socialEnvironment" value="Prefer many social gathering activities in the room" onclick="recordAnswer('socialEnvironment', this.value)">
+          <span>Prefer many social gathering activities in the room</span>
+        </label>
+      </div>
+      <div class="question">
+        <p>Question 7: What time do you usually sleep at night?</p>
+        <label class="answer-label">
+          <input type="radio" name="sleepTime" value="Before 10PM" onclick="recordAnswer('nightowl', 0)">
+          <span>Before 10PM</span>
+        </label>
+        <label class="answer-label">
+          <input type="radio" name="sleepTime" value="In between 10 PM - 12 AM" onclick="recordAnswer('nightowl', 3)">
+          <span>In between 10 PM - 12 AM</span>
+        </label>
+        <label class="answer-label">
+          <input type="radio" name="sleepTime" value="In between 12AM - 2 AM" onclick="recordAnswer('nightowl', 6)">
+          <span>In between 12AM - 2 AM</span>
+        </label>
+        <label class="answer-label">
+          <input type="radio" name="sleepTime" value="After 2 AM" onclick="recordAnswer('nightowl', 9)">
+          <span>After 2 AM</span>
+        </label>
+      </div>
+      <div class="question">
+        <p>
+          Question 8: What time (on average) do you wake up during the weekdays?</p>
+          <label class="answer-label">
+          <input type="radio" name="wakeUpTime" value="Before 8 AM" onclick="recordAnswer('wakeUpTime', 'Before 8 AM')">
+          <span>Before 8 AM</span>
+          </label>
+          <label class="answer-label">
+          <input type="radio" name="wakeUpTime" value="In between 8 AM - 10 AM" onclick="recordAnswer('wakeUpTime', 'In between 8 AM - 10 AM')">
+          <span>In between 8 AM - 10 AM</span>
+          </label>
+          <label class="answer-label">
+          <input type="radio" name="wakeUpTime" value="In between 10 AM - 12 PM" onclick="recordAnswer('wakeUpTime', 'In between 10 AM - 12 PM')">
+          <span>In between 10 AM - 12 PM</span>
+          </label>
+          <label class="answer-label">
+          <input type="radio" name="wakeUpTime" value="After 12 PM" onclick="recordAnswer('wakeUpTime', 'After 12 PM')">
+          <span>After 12 PM</span>
+          </label>
+
+          <button type="submit" onclick="submitForm()" class="submit-button">Submit</button>
+    </div>
+
+    <script>
+      function submitForm() {
+        // Collect all the form data
+        var formData = {
+          pets: getSelectedValue('pets'),
+          smoker: getSelectedValue('smoker'),
+          cleaningFrequency: getSelectedValue('cleaning'),
+          allergies: getSelectedValue('allergies'),
+          roomTemperature: getSelectedValue('temperature'),
+          socialEnvironment: getSelectedValue('socialEnvironment'),
+          sleepTime: getSelectedValue('sleepTime'),
+          wakeUpTime: getSelectedValue('wakeUpTime')
+        };
+    
+        // Convert the form data to JSON
+        var jsonData = JSON.stringify(formData);
+    
+        // Send the form data to PHP using AJAX or fetch API
+        // Here, you would make an AJAX/fetch request to your PHP script and pass the jsonData
+        // For example:
+        fetch('your-php-script.php', {
+          method: 'POST',
+          body: jsonData
+        })
+        .then(response => {
+          // Handle the response from PHP if needed
+          // You can redirect the user to index.html after successful submission
+          window.location.href = 'index.html';
+        })
+        .catch(error => {
+          // Handle any error that occurred during the request
+          console.error('Error:', error);
+        });
+      }
+    
+      // Helper function to get the selected value of a radio button group
+      function getSelectedValue(name) {
+        var radios = document.getElementsByName(name);
+        for (var i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            return radios[i].value;
+          }
+        }
+        return null; // Return null if no option is selected
+      }
+    </script>
+
+
+  
+  </body>
+
+</html>
